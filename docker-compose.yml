@@ -10,5 +10,5 @@ services:
       DB_NAME: COMPROVE-API-JS
       DB_USER: postgres
       DB_PASSWORD: postgres
-      API_URL: https://comprover.bubbleapps.io/version-test/api/1.1/wf/analise_de_pedidobi
+      API_URL: https://comprover.bubbleapps.io/api/1.1/wf/analise_de_pedidobi
       API_KEY: hgd5h4d5f64j65fgh4k56fj465dfg4h56dt465ryt4j56y4j65ytr4j65yt4
