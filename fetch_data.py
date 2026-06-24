@@ -69,12 +69,14 @@ def buscar_e_salvar(data_alvo):
 
 agora = datetime.now(BR)
 inicio = agora.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=1)
+fim = agora + timedelta(days=int(os.getenv("DIAS_CARGA", "7")))
+fim = fim.replace(hour=0, minute=0, second=0, microsecond=0)
 
-# CARGA INICIAL: desde ontem 00:00 até agora, a cada 6h 
+# CARGA INICIAL: desde ontem 00:00 até data futura, a cada 6h
 total = 0
-print("=== CARGA INICIAL: desde ontem 00:00 ===")
+print(f"=== CARGA INICIAL: {inicio.date()} até {fim.date()} ===")
 proxima = inicio
-while proxima <= agora:
+while proxima <= fim:
     qtd = buscar_e_salvar(proxima)
     if qtd > 0:
         print(f"  {proxima}: {qtd} registros")
@@ -82,10 +84,9 @@ while proxima <= agora:
     proxima += timedelta(hours=6)
 print(f"Carga inicial concluída: {total} registros inseridos")
 
-#  LOOP CONTÍNUO: de 6 em 6h 
+# LOOP CONTÍNUO: de 6 em 6h a partir do fim da carga
 print("=== LOOP CONTÍNUO: atualizando a cada 6h ===")
-proxima = agora.replace(minute=0, second=0, microsecond=0)
-proxima += timedelta(hours=((proxima.hour // 6) + 1) * 6 - proxima.hour)
+proxima = fim + timedelta(hours=6)
 
 while True:
     qtd = buscar_e_salvar(proxima)
