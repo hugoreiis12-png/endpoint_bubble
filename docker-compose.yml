@@ -1,33 +1,5 @@
 services:
-
-  db:
-    image: postgres:16-alpine
-    container_name: endpoint-db
-    restart: unless-stopped
-    env_file:
-      - .env
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./init:/docker-entrypoint-initdb.d
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-COMPROVE-API-JS}"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-
   fetch-data:
     build: .
     container_name: endpoint-bubble
     restart: unless-stopped
-    env_file:
-      - .env
-    depends_on:
-      db:
-        condition: service_healthy
-
-volumes:
-  pgdata:
