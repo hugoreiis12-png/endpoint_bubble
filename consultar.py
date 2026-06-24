@@ -1,11 +1,12 @@
+import os
 import psycopg2
 
 DB_CONFIG = {
-    "host": "192.168.0.142",
-    "port": 5432,
-    "dbname": "COMPROVE-API-JS",
-    "user": "postgres",
-    "password": "postgres"
+    "host": os.getenv("DB_HOST", "192.168.0.142"),
+    "port": int(os.getenv("DB_PORT", "5432")),
+    "dbname": os.getenv("DB_NAME", "COMPROVE-API-JS"),
+    "user": os.getenv("DB_USER", "postgres"),
+    "password": os.getenv("DB_PASSWORD", "postgres")
 }
 
 conn = psycopg2.connect(**DB_CONFIG)
