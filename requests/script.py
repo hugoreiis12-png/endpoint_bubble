@@ -1,6 +1,6 @@
 import requests
 
-url = "https://comprover.bubbleapps.io/version-test/api/1.1/wf/analise_de_pedidobi"
+url = "https://comprover.bubbleapps.io/api/1.1/wf/analise_de_pedidobi"
 
 headers = {
     "Content-Type": "application/json",
@@ -8,7 +8,7 @@ headers = {
 }
 
 payload = {
-    "data": 1781233200
+    "data": 1782442800
 }
 
 response = requests.post(url, headers=headers, json=payload)
