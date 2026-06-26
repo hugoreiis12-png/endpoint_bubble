@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["python", "fetch_data.py"]
+CMD ["python", "-m", "sync_service.main"]

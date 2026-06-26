@@ -2,4 +2,7 @@ venv/
 __pycache__/
 *.pyc
 .env
+.git/
+.gitignore
+README.md
 sync_service.log

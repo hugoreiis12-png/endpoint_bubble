@@ -1,6 +1,5 @@
-# Configurações de COmpose 
 services:
-  fetch-data:
+  sync-service:
     build: .
     container_name: endpoint-bubble
     restart: unless-stopped
@@ -12,3 +11,9 @@ services:
       DB_PASSWORD: postgres
       API_URL: https://comprover.bubbleapps.io/api/1.1/wf/analise_de_pedidobi
       API_KEY: hgd5h4d5f64j65fgh4k56fj465dfg4h56dt465ryt4j56y4j65ytr4j65yt4
+      SYNC_INTERVAL: "21600"
+      LOG_LEVEL: INFO
+      API_TIMEOUT: "30"
+      API_RETRIES: "3"
+      DB_POOL_MIN: "1"
+      DB_POOL_MAX: "5"
